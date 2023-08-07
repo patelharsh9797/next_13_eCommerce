@@ -1,25 +1,4 @@
 {
-    "workbench.colorCustomizations": {
-        "activityBar.activeBackground": "#89ebd6",
-        "activityBar.background": "#89ebd6",
-        "activityBar.foreground": "#15202b",
-        "activityBar.inactiveForeground": "#15202b99",
-        "activityBarBadge.background": "#c65be3",
-        "activityBarBadge.foreground": "#15202b",
-        "commandCenter.border": "#15202b99",
-        "sash.hoverBorder": "#89ebd6",
-        "statusBar.background": "#5de4c7",
-        "statusBar.foreground": "#15202b",
-        "statusBarItem.hoverBackground": "#31ddb8",
-        "statusBarItem.remoteBackground": "#5de4c7",
-        "statusBarItem.remoteForeground": "#15202b",
-        "titleBar.activeBackground": "#5de4c7",
-        "titleBar.activeForeground": "#15202b",
-        "titleBar.inactiveBackground": "#5de4c799",
-        "titleBar.inactiveForeground": "#15202b99"
-    },
-    "peacock.color": "#5de4c7",
-    "cSpell.words": [
-        "nextauth"
-    ]
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }

@@ -1,16 +1,13 @@
 import Image from "next/image";
+import formatPrice from "@/utils/PriceFormat";
+import {ProductType} from "@/types/ProductType";
 
-interface ProductProps {
-    name:string
-    price:string
-    image:string
-}
 
-const Product = ({name,price,image}:ProductProps) => {
+const Product = ({name,price,image}:ProductType) => {
     return (
         <div>
             <Image src={image} alt={name} width={400} height={400} />
-            <h1>{name} - {price}</h1>
+            <h1>{name} - {price ? formatPrice(price) : "N/A"}</h1>
         </div>
     )
 }

@@ -7,6 +7,7 @@ type CartState = {
   cart: AddCartType[];
   toggleCart: () => void;
   addProduct: (item: AddCartType) => void;
+  removeProduct: (item: AddCartType) => void;
 };
 
 export const userCartStore = create<CartState>()(
@@ -27,7 +28,7 @@ export const userCartStore = create<CartState>()(
                 cartItem.id === item.id
                   ? {
                       ...cartItem,
-                      quantity: cartItem.quantity + 1,
+                      quantity: cartItem.quantity! + 1,
                     }
                   : cartItem,
               ),
@@ -36,7 +37,31 @@ export const userCartStore = create<CartState>()(
             return { cart: [...state.cart, { ...item, quantity: 1 }] };
           }
         }),
+      removeProduct: (item) =>
+        set((state) => {
+          const existingItem = state.cart.find(
+            (cartItem) => cartItem.id === item.id,
+          );
+
+          if (existingItem && existingItem.quantity! > 1) {
+            return {
+              cart: state.cart.map((cartItem) =>
+                cartItem.id === item.id
+                  ? {
+                      ...cartItem,
+                      quantity: cartItem.quantity! - 1,
+                    }
+                  : cartItem,
+              ),
+            };
+          } else {
+            return {
+              cart: state.cart.filter((cartItem) => cartItem.id !== item.id),
+            };
+          }
+        }),
     }),
+
     {
       name: "cart-store",
     },

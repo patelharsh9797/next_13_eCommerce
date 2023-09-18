@@ -22,7 +22,7 @@ export default async function Product({ searchParams }: SearchParamType) {
           </p>
         </div>
 
-        <AddCart {...searchParams} quantity={1} />
+        <AddCart {...searchParams} />
       </div>
     </div>
   );

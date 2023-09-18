@@ -1,6 +1,6 @@
 import { userCartStore } from "@/store";
 import Image from "next/image";
-import formatPrice from "@/utils/PriceFormat";
+import formatPrice from "@/public/utils/PriceFormat";
 import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import Basket from "@/public/emptyCart.png";
 

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { SearchParamType } from "@/types/SearchParamsType";
-import PriceFormat from "@/public/utils/PriceFormat";
+import PriceFormat from "@/utils/PriceFormat";
 import AddCart from "@/app/product/[id]/AddCart";
 
 export default async function Product({ searchParams }: SearchParamType) {

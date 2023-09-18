@@ -1,11 +1,16 @@
 import { userCartStore } from "@/store";
 import Image from "next/image";
-import formatPrice from "@/public/utils/PriceFormat";
+import formatPrice from "@/utils/PriceFormat";
 import { IoAddCircle, IoRemoveCircle } from "react-icons/io5";
 import Basket from "@/public/emptyCart.png";
 
 export default function Cart() {
   const { toggleCart, cart, addProduct, removeProduct } = userCartStore();
+
+  const totalPrice = cart.reduce(
+    (acc, item) => acc + item.unit_amount! * item.quantity!,
+    0,
+  );
 
   return (
     <div
@@ -47,10 +52,14 @@ export default function Cart() {
         ))}
 
         {cart.length > 0 && (
-          <button className="py-2 mt-12 bg-teal-700 w-full rounded-md text-white">
-            Checkout
-          </button>
+          <>
+            <p>Total: {formatPrice(totalPrice)}</p>
+            <button className="py-2 mt-12 bg-teal-700 w-full rounded-md text-white">
+              Checkout
+            </button>
+          </>
         )}
+
         {!cart.length && (
           <div className="flex flex-col items-center gap-12 font-medium text-2xl pt-56 opacity-75">
             <h1>Uhhh ohhh...it's empty 😢</h1>

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import formatPrice from "@/public/utils/PriceFormat";
+import formatPrice from "@/utils/PriceFormat";
 import { ProductType } from "@/types/ProductType";
 import Link from "next/link";
 
@@ -39,4 +39,4 @@ const Product = ({
   );
 };
 
-export default Product
+export default Product;

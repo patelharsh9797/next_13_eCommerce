@@ -28,7 +28,7 @@ export default function Cart() {
       >
         <button
           onClick={toggleCart}
-          className="text-sm font-bold pb-12 underline"
+          className="text-sm font-bold p-2 mb-12 underline"
         >
           Back To Store 🏃‍♂️
         </button>

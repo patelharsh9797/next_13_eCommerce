@@ -65,11 +65,11 @@ export default function Cart() {
           </motion.div>
         ))}
 
-        <motion.div layout>
+        <motion.div layout className="mt-12">
           {cart.length > 0 && (
             <>
               <p>Total: {formatPrice(totalPrice)}</p>
-              <button className="py-2 mt-12 bg-teal-700 w-full rounded-md text-white">
+              <button className="py-2 mt-4 bg-teal-700 w-full rounded-md text-white">
                 Checkout
               </button>
             </>
@@ -82,7 +82,7 @@ export default function Cart() {
               animate={{ scale: 1, rotateZ: 0, opacity: 0.75 }}
               initial={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
               exit={{ scale: 0.5, rotateZ: -10, opacity: 0 }}
-              className="flex flex-col items-center gap-12 font-medium text-2xl pt-56 opacity-75"
+              className="flex flex-col items-center gap-12 font-medium text-2xl pt-36 opacity-75"
             >
               <h1>Uhhh ohhh...it's empty 😢</h1>
               <Image src={Basket} alt="empty cart" width={200} height={200} />

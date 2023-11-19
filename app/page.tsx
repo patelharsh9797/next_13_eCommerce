@@ -1,5 +1,5 @@
-import Stripe from "stripe";
 import Product from "@/app/components/Product";
+import Stripe from "stripe";
 
 const getProduct = async () => {
   const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
@@ -21,7 +21,7 @@ const getProduct = async () => {
         description: product.description,
         metadata: { features },
       };
-    }),
+    })
   );
 
   return productWithPrices;

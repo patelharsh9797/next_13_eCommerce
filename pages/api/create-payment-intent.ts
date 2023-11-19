@@ -29,7 +29,7 @@ export default async function Handler(
 
   const orderData = {
     user: {
-      connect: { id: userSession.user.id },
+      connect: { id: userSession.user?.id },
       amount: calculateOrderAmount(items),
       currency: "usd",
       status: "pending",

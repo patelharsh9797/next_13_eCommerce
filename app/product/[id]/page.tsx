@@ -3,7 +3,10 @@ import { SearchParamType } from "@/types/SearchParamsType";
 import PriceFormat from "@/utils/PriceFormat";
 import AddCart from "@/app/product/[id]/AddCart";
 
-export default async function Product({ searchParams }: SearchParamType) {
+export default async function Product({
+  params: { id },
+  searchParams,
+}: SearchParamType) {
   return (
     <div className="flex flex-col lg:flex-row justify-between gap-16 text-gray-700">
       <Image
@@ -24,7 +27,7 @@ export default async function Product({ searchParams }: SearchParamType) {
         </div>
 
         <AddCart
-          id={searchParams.id}
+          id={id}
           image={searchParams.image}
           name={searchParams.name}
           unit_amount={searchParams.unit_amount}

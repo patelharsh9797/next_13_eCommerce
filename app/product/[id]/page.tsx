@@ -23,7 +23,12 @@ export default async function Product({ searchParams }: SearchParamType) {
           </p>
         </div>
 
-        <AddCart {...searchParams} />
+        <AddCart
+          id={searchParams.id}
+          image={searchParams.image}
+          name={searchParams.name}
+          unit_amount={searchParams.unit_amount}
+        />
       </div>
     </div>
   );

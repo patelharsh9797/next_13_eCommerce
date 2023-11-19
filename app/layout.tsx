@@ -6,7 +6,6 @@ import Nav from "./components/Nav";
 import { Roboto, Lobster_Two } from "next/font/google";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import Hydrate from "@/app/components/Hydrate";
 
 const roboto = Roboto({
   weight: ["400", "500", "700"],
@@ -37,10 +36,8 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`mx-4 lg:mx-24 ${roboto.className}`}>
-        <Hydrate>
-          <Nav user={session?.user} expires={session?.expires as string} />
-          {children}
-        </Hydrate>
+        <Nav user={session?.user} expires={session?.expires as string} />
+        {children}
       </body>
     </html>
   );

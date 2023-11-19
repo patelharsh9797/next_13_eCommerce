@@ -18,7 +18,6 @@ const Product = ({
         pathname: `/product/${id}`,
         query: { id, name, unit_amount, image, description, features },
       }}
-      as={`/product/[slug]`}
     >
       <div className="text-gray-700">
         <Image

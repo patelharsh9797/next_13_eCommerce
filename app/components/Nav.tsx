@@ -9,6 +9,7 @@ import { userCartStore } from "@/store";
 import Link from "next/link";
 import { AiFillShopping } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
+import Hydrate from "./Hydrate";
 
 export default function Nav({ user }: Session) {
   const cartStore = userCartStore();
@@ -25,16 +26,18 @@ export default function Nav({ user }: Session) {
         >
           <AiFillShopping />
           <AnimatePresence>
-            {cartStore.cart.length > 0 && (
-              <motion.span
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-                className="bg-teal-700 text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex justify-center items-center"
-              >
-                {cartStore.cart.length}
-              </motion.span>
-            )}
+            <Hydrate className="w-5 h-5 rounded-full absolute left-4 bottom-4 flex justify-center items-center">
+              {cartStore.cart.length > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  className="bg-teal-700 text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex justify-center items-center"
+                >
+                  {cartStore.cart.length}
+                </motion.span>
+              )}
+            </Hydrate>
           </AnimatePresence>
         </li>
         {!user && (

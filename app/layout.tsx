@@ -3,21 +3,9 @@ import "./globals.css";
 
 // TODO components
 import Nav from "./components/Nav";
-import { Roboto, Lobster_Two } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-
-const roboto = Roboto({
-  weight: ["400", "500", "700"],
-  subsets: ["latin"],
-  variable: "--font-roboto",
-});
-
-const lobster = Lobster_Two({
-  weight: "700",
-  subsets: ["latin"],
-  variable: "--font-lobster",
-});
 
 export const metadata = {
   title: "NextJS 13 eCommerce web site",
@@ -35,7 +23,7 @@ export default async function RootLayout({
 
   return (
     <html lang="en">
-      <body className={`mx-4 lg:mx-24 ${roboto.className}`}>
+      <body className={`mx-4 lg:mx-24 ${GeistSans.className}`}>
         <Nav user={session?.user} expires={session?.expires as string} />
         {children}
       </body>

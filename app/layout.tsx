@@ -24,10 +24,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`mx-4 lg:mx-24 ${GeistSans.className}`}>
-        
-          <Nav user={session?.user} expires={session?.expires as string} />
-   
-
+        <Nav user={session?.user} expires={session?.expires as string} />
         {children}
       </body>
     </html>

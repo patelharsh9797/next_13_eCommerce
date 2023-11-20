@@ -1,6 +1,6 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
-import { LoadingPage, LoadingSpinner } from "./Loading";
+import { LoadingSpinner } from "./Loading";
 
 export default function Hydrate({
   children,

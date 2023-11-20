@@ -26,7 +26,6 @@ export const userCartStore = create<CartState>()(
       toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
       addProduct: (item) =>
         set((state) => {
-          console.log("item", item);
           const existingItem = state.cart.find(
             (cartItem) => cartItem.id === item.id
           );

@@ -18,7 +18,7 @@ export default function Cart() {
 
   const totalPrice = cart.reduce(
     (acc, item) => acc + item.unit_amount! * item.quantity!,
-    0,
+    0
   );
 
   return (

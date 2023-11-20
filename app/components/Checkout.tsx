@@ -7,11 +7,11 @@ import { Elements } from "@stripe/react-stripe-js";
 import { useRouter } from "next/navigation";
 
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
+  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
 export default function Checkout() {
-  const { cart, paymentIntent } = userCartStore();
+  const { cart, paymentIntent, setPaymentIntent } = userCartStore();
   const [clientSecret, setClientSecret] = useState("");
   const router = useRouter();
 
@@ -33,13 +33,14 @@ export default function Checkout() {
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        setClientSecret(data.paymentIntent.client_secret);
+        setPaymentIntent(data.paymentIntent.id);
       });
   }, []);
 
   return (
     <div>
-      <h1>Checkout Page</h1>
+      <h1>Checkout Page - {clientSecret}</h1>
     </div>
   );
 }

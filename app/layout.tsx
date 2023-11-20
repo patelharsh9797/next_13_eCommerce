@@ -6,7 +6,6 @@ import Nav from "./components/Nav";
 import { GeistSans } from "geist/font/sans";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import Hydrate from "./components/Hydrate";
 
 export const metadata = {
   title: "NextJS 13 eCommerce web site",
@@ -25,10 +24,11 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`mx-4 lg:mx-24 ${GeistSans.className}`}>
-        <Hydrate>
+        
           <Nav user={session?.user} expires={session?.expires as string} />
-          {children}
-        </Hydrate>
+   
+
+        {children}
       </body>
     </html>
   );

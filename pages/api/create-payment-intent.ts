@@ -2,21 +2,12 @@ import Stripe from "stripe";
 import { NextApiRequest, NextApiResponse } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
-import { AddCartType } from "@/types/AddCartType";
 import { prisma } from "@/utils/prisma";
+import { calculateOrderAmount } from "@/utils/PriceFormat";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2022-11-15",
 });
-
-const calculateOrderAmount = (items: AddCartType[]) => {
-  const totalPrice = items.reduce(
-    (acc, item) => acc + item.unit_amount! * item.quantity!,
-    0
-  );
-
-  return totalPrice;
-};
 
 export default async function Handler(
   req: NextApiRequest,
@@ -39,7 +30,7 @@ export default async function Handler(
       connect: { id: userSession.user?.id },
     },
     amount: calculateOrderAmount(items),
-    currency: "usd",
+    currency: "inr",
     status: "pending",
     paymentIntentID: payment_intent_id,
     products: {
@@ -100,7 +91,7 @@ export default async function Handler(
   } else {
     const paymentIntent = await stripe.paymentIntents.create({
       amount: calculateOrderAmount(items),
-      currency: "usd",
+      currency: "inr",
       automatic_payment_methods: {
         enabled: true,
       },

@@ -34,12 +34,22 @@ export default function Cart() {
         onClick={(e) => e.stopPropagation()}
         className="bg-white absolute right-0 top-0 w-full lg:w-2/5 h-screen p-12 overflow-y-auto text-gray-700"
       >
-        <button
-          onClick={toggleCart}
-          className="text-sm font-bold p-2 mb-12 underline"
-        >
-          Back To Store 🏃‍♂️
-        </button>
+        {onCheckout === "cart" && (
+          <button
+            onClick={toggleCart}
+            className="text-sm font-bold p-2 mb-12 underline"
+          >
+            Back To Store 🏃‍♂️
+          </button>
+        )}
+        {onCheckout === "checkout" && (
+          <button
+            onClick={() => setOnCheckout("cart")}
+            className="text-sm font-bold p-2 mb-12 underline"
+          >
+            Check Your Cart 🛒
+          </button>
+        )}
 
         {onCheckout === "cart" &&
           cart.map((item) => (
@@ -76,19 +86,17 @@ export default function Cart() {
 
         {onCheckout === "checkout" && <Checkout />}
 
-        <motion.div layout className="mt-12">
-          {cart.length > 0 && (
-            <>
-              <p>Total: {formatPrice(totalPrice)}</p>
-              <button
-                onClick={() => setOnCheckout("checkout")}
-                className="py-2 mt-4 bg-teal-700 w-full rounded-md text-white"
-              >
-                Checkout
-              </button>
-            </>
-          )}
-        </motion.div>
+        {cart.length > 0 && onCheckout === "cart" && (
+          <motion.div layout className="mt-12">
+            <p>Total: {formatPrice(totalPrice)}</p>
+            <button
+              onClick={() => setOnCheckout("checkout")}
+              className="py-2 mt-4 bg-teal-700 w-full rounded-md text-white"
+            >
+              Checkout
+            </button>
+          </motion.div>
+        )}
 
         <AnimatePresence>
           {!cart.length && (

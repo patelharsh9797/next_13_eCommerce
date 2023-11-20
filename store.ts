@@ -2,16 +2,18 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { AddCartType } from "@/types/AddCartType";
 
+type OnCheckOutEnum = "cart" | "checkout" | "success";
+
 type CartState = {
   isOpen: boolean;
   cart: AddCartType[];
   toggleCart: () => void;
   addProduct: (item: AddCartType) => void;
   removeProduct: (item: AddCartType) => void;
-  onCheckout: "cart" | "checkout";
+  onCheckout: OnCheckOutEnum;
   paymentIntent: string;
   setPaymentIntent: (val: string) => void;
-  setOnCheckout: (val: "cart" | "checkout") => void;
+  setOnCheckout: (val: OnCheckOutEnum) => void;
 };
 
 export const userCartStore = create<CartState>()(

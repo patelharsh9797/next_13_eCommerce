@@ -1,8 +1,13 @@
-const formatPrice = (amount : number)=>{
-    return new Intl.NumberFormat("en-US",{
-        style:"currency",
-        currency:"USD"
-    }).format(amount/100)
-}
+import { AddCartType } from "@/types/AddCartType";
 
-export default formatPrice
+const formatPrice = (amount: number) => {
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "INR",
+  }).format(amount / 100);
+};
+
+export const calculateOrderAmount = (items: AddCartType[]) =>
+  items.reduce((acc, item) => acc + item.unit_amount! * item.quantity!, 0);
+
+export default formatPrice;

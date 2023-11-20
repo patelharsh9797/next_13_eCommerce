@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { persist } from "zustand/middleware";
 import { AddCartType } from "@/types/AddCartType";
 
 type OnCheckOutEnum = "cart" | "checkout" | "success";
@@ -18,65 +18,63 @@ type CartState = {
 };
 
 export const userCartStore = create<CartState>()(
-  devtools(
-    persist(
-      (set) => ({
-        cart: [],
-        isOpen: false,
-        onCheckout: "cart",
-        paymentIntent: "",
-        setOnCheckout: (val) => set((state) => ({ onCheckout: val })),
-        setPaymentIntent: (val) => set((state) => ({ paymentIntent: val })),
-        toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
-        clearCart: () => set((state) => ({ cart: [] })),
-        addProduct: (item) =>
-          set((state) => {
-            const existingItem = state.cart.find(
-              (cartItem) => cartItem.id === item.id
-            );
+  persist(
+    (set) => ({
+      cart: [],
+      isOpen: false,
+      onCheckout: "cart",
+      paymentIntent: "",
+      setOnCheckout: (val) => set((state) => ({ onCheckout: val })),
+      setPaymentIntent: (val) => set((state) => ({ paymentIntent: val })),
+      toggleCart: () => set((state) => ({ isOpen: !state.isOpen })),
+      clearCart: () => set((state) => ({ cart: [] })),
+      addProduct: (item) =>
+        set((state) => {
+          const existingItem = state.cart.find(
+            (cartItem) => cartItem.id === item.id
+          );
 
-            if (existingItem) {
-              return {
-                cart: state.cart.map((cartItem) =>
-                  cartItem.id === item.id
-                    ? {
-                        ...cartItem,
-                        quantity: cartItem.quantity! + 1,
-                      }
-                    : cartItem
-                ),
-              };
-            } else {
-              return { cart: [...state.cart, { ...item, quantity: 1 }] };
-            }
-          }),
-        removeProduct: (item) =>
-          set((state) => {
-            const existingItem = state.cart.find(
-              (cartItem) => cartItem.id === item.id
-            );
+          if (existingItem) {
+            return {
+              cart: state.cart.map((cartItem) =>
+                cartItem.id === item.id
+                  ? {
+                      ...cartItem,
+                      quantity: cartItem.quantity! + 1,
+                    }
+                  : cartItem
+              ),
+            };
+          } else {
+            return { cart: [...state.cart, { ...item, quantity: 1 }] };
+          }
+        }),
+      removeProduct: (item) =>
+        set((state) => {
+          const existingItem = state.cart.find(
+            (cartItem) => cartItem.id === item.id
+          );
 
-            if (existingItem && existingItem.quantity! > 1) {
-              return {
-                cart: state.cart.map((cartItem) =>
-                  cartItem.id === item.id
-                    ? {
-                        ...cartItem,
-                        quantity: cartItem.quantity! - 1,
-                      }
-                    : cartItem
-                ),
-              };
-            } else {
-              return {
-                cart: state.cart.filter((cartItem) => cartItem.id !== item.id),
-              };
-            }
-          }),
-      }),
-      {
-        name: "newcart-store",
-      }
-    )
+          if (existingItem && existingItem.quantity! > 1) {
+            return {
+              cart: state.cart.map((cartItem) =>
+                cartItem.id === item.id
+                  ? {
+                      ...cartItem,
+                      quantity: cartItem.quantity! - 1,
+                    }
+                  : cartItem
+              ),
+            };
+          } else {
+            return {
+              cart: state.cart.filter((cartItem) => cartItem.id !== item.id),
+            };
+          }
+        }),
+    }),
+    {
+      name: "cart-store",
+    }
   )
 );

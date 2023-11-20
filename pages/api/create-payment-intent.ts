@@ -86,7 +86,7 @@ export default async function Handler(
         },
       });
 
-      return res.status(200).json({ paymentIntent: updated_intent.id });
+      return res.status(200).json({ paymentIntent: updated_intent });
     }
   } else {
     const paymentIntent = await stripe.paymentIntents.create({

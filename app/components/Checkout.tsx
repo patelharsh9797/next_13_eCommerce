@@ -12,7 +12,7 @@ const stripePromise = loadStripe(
 );
 
 export default function Checkout() {
-  const { cart, paymentIntent, setPaymentIntent } = userCartStore();
+  const cartStore = userCartStore();
   const [clientSecret, setClientSecret] = useState("");
   const router = useRouter();
 
@@ -22,8 +22,8 @@ export default function Checkout() {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        items: cart,
-        payment_intent_id: paymentIntent,
+        items: cartStore.cart,
+        payment_intent_id: cartStore.paymentIntent,
       }),
     })
       .then((res) => {
@@ -35,8 +35,9 @@ export default function Checkout() {
       })
       .then((data) => {
         setClientSecret(data.paymentIntent.client_secret);
-        setPaymentIntent(data.paymentIntent.id);
-      });
+        cartStore.setPaymentIntent(data.paymentIntent.id);
+      })
+      .catch((e) => console.log("checkoutError:", e));
   }, []);
 
   const options: StripeElementsOptions = {

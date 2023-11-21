@@ -37,7 +37,6 @@ export default function CheckoutForm({
         redirect: "if_required",
       })
       .then((result) => {
-        console.log("Result", result);
         if (!result.error) {
           setOnCheckout("success");
         }

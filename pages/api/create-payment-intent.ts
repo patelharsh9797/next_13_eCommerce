@@ -36,6 +36,7 @@ export default async function Handler(
     products: {
       create: items.map((item) => ({
         name: item.name,
+        image: item.image,
         description: item.description || null,
         unit_amount: parseFloat(item.unit_amount),
         quantity: item.quantity,
@@ -78,6 +79,7 @@ export default async function Handler(
             deleteMany: {},
             create: items.map((item) => ({
               name: item.name,
+              image: item.image,
               description: item.description || null,
               unit_amount: parseFloat(item.unit_amount),
               quantity: item.quantity,

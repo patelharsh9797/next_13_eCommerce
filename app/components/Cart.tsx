@@ -65,7 +65,7 @@ export default function Cart() {
                 alt={item.name}
                 width={120}
                 height={120}
-                className={"rounded-md h-24"}
+                className={"rounded-md w-auto h-24"}
               />
 
               <div>

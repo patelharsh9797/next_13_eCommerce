@@ -38,37 +38,49 @@ export default async function DashboardPage() {
     );
 
   return (
-    <div className="font-medium grid grid-cols-fluid gap-16">
+    <div className="font-medium space-y-8 pb-8">
       {orders.map((order) => (
-        <div className="rounded-lg p-8 space-y-2 bg-slate-200" key={order.id}>
-          <h2 className="text-xs font-medium">Order reference : {order.id}</h2>
+        <div
+          className="rounded-lg p-8 bg-slate-200 grid md:grid-cols-2 gap-8"
+          key={order.id}
+        >
+          <div className="space-y-2">
+            <h2 className="text-xs font-medium">
+              Order reference : {order.id}
+            </h2>
 
-          <p className="text-xs">
-            Time : {new Date(order.createdDate).toLocaleString()}
-          </p>
+            <p className="text-xs">
+              Time : {new Date(order.createdDate).toLocaleString()}
+            </p>
 
-          <p className="text-xs">
-            Status :{" "}
-            <span
-              className={`${
-                order.status === "complete" ? "bg-teal-600" : "bg-orange-600"
-              } text-white py-1 px-2 rounded-md mx-2`}
-            >
-              {order.status}
-            </span>
-          </p>
+            <p className="text-xs">
+              Status :{" "}
+              <span
+                className={`${
+                  order.status === "complete" ? "bg-teal-600" : "bg-orange-600"
+                } text-white py-1 px-2 rounded-md mx-2`}
+              >
+                {order.status}
+              </span>
+            </p>
 
-          <div className="text-sm lg:flex items-start gap-4">
+            <p className="font-medium pt-4">
+              Total : {formatPrice(order.amount)}
+            </p>
+          </div>
+
+          <div className="text-sm lg:flex flex-wrap items-start gap-4">
             {order.products.map((product) => (
               <div className="py-2" key={product.id}>
                 <h3 className="py-2">{product.name}</h3>
                 <div className="flex items-center gap-4">
                   <Image
                     src={product.image!}
-                    width={64}
-                    height={64}
+                    width={80}
+                    height={80}
                     alt={product.name}
                     priority
+                    className="rounded-md shadow-md"
                   />
                   <p>{formatPrice(product.unit_amount)}</p>
                   <p>Quantity : {product.quantity}</p>
@@ -76,8 +88,6 @@ export default async function DashboardPage() {
               </div>
             ))}
           </div>
-
-          <p className="font-medium">Total : {formatPrice(order.amount)}</p>
         </div>
       ))}
     </div>

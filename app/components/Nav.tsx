@@ -62,21 +62,48 @@ export default function Nav({ user }: Session) {
 
           {!!user && (
             <>
-              <li>
-                <Link href="/dashboard">
+              <li className="pr-4">
+                <div className="dropdown dropdown-end cursor-pointer">
                   <Image
                     src={user?.image as string}
                     alt={user?.name as string}
                     width={36}
                     height={36}
-                    className="rounded-full ring-2 ring-offset-2 ring-primary"
+                    tabIndex={0}
+                    className="rounded-full  ring-2 ring-offset-2 ring-primary"
                   />
-                </Link>
-              </li>
-              <li className="bg-primary text-white py-2 px-4 rounded-md">
-                <button onClick={() => signOut({ callbackUrl: "/" })}>
-                  Sign Out
-                </button>
+                  <ul
+                    tabIndex={0}
+                    className="dropdown-content p-4 menu space-y-2 shadow bg-base-100 rounded-box w-72"
+                  >
+                    <li>
+                      <Link
+                        className="hover:bg-base-300 p-4 rounded-md text-center"
+                        href="/dashboard"
+                        onClick={() => {
+                          if (document.activeElement instanceof HTMLElement) {
+                            document.activeElement.blur();
+                          }
+                        }}
+                      >
+                        Orders
+                      </Link>
+                    </li>
+                    <li>
+                      <button
+                        onClick={() => {
+                          signOut({ callbackUrl: "/" });
+                          if (document.activeElement instanceof HTMLElement) {
+                            document.activeElement.blur();
+                          }
+                        }}
+                        className="bg-primary text-white hover:bg-base-300 p-4 rounded-md text-center"
+                      >
+                        Sign Out
+                      </button>
+                    </li>
+                  </ul>
+                </div>
               </li>
             </>
           )}

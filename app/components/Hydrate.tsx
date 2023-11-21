@@ -1,6 +1,7 @@
 "use client";
 import { ReactNode, useEffect, useState } from "react";
-import { LoadingSpinner } from "./Loading";
+import { LoadingPage, LoadingSpinner } from "./Loading";
+import { userThemeStore } from "@/store";
 
 export default function Hydrate({
   children,
@@ -10,6 +11,7 @@ export default function Hydrate({
   className?: string;
 }) {
   const [isHydrated, setIsHydrated] = useState(false);
+  const themeStore = userThemeStore();
 
   useEffect(() => {
     setIsHydrated(true);
@@ -18,11 +20,13 @@ export default function Hydrate({
   return (
     <>
       {isHydrated ? (
-        <>{children}</>
+        <body className="px-4 lg:px-24" data-theme={themeStore.mode}>
+          {children}
+        </body>
       ) : (
-        <div className={className}>
-          <LoadingSpinner />
-        </div>
+        <body>
+          <LoadingPage />
+        </body>
       )}
     </>
   );

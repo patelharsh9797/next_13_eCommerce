@@ -10,7 +10,7 @@ import Link from "next/link";
 import { AiFillShopping } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
 import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
-import Hydrate from "./Hydrate";
+import ModeToggle from "./ModeToggle";
 
 export default function Nav({ user }: Session) {
   const cartStore = userCartStore();
@@ -24,10 +24,11 @@ export default function Nav({ user }: Session) {
         shallowRouting
       />
 
-      <nav className="flex justify-between items-center py-12">
+      <nav className="flex justify-between items-center py-12 w-full">
         <Link href={"/"}>
           <h1 className="font-bold text-xl italic">Styled</h1>
         </Link>
+
         <ul className="flex items-center gap-8">
           <li
             onClick={cartStore.toggleCart}
@@ -35,20 +36,23 @@ export default function Nav({ user }: Session) {
           >
             <AiFillShopping />
             <AnimatePresence>
-              <Hydrate className="hidden">
-                {cartStore.cart.length > 0 && (
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    exit={{ scale: 0 }}
-                    className="bg-primary text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex justify-center items-center"
-                  >
-                    {cartStore.cart.length}
-                  </motion.span>
-                )}
-              </Hydrate>
+              {cartStore.cart.length > 0 && (
+                <motion.span
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  exit={{ scale: 0 }}
+                  className="bg-primary text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex justify-center items-center"
+                >
+                  {cartStore.cart.length}
+                </motion.span>
+              )}
             </AnimatePresence>
           </li>
+
+          <li className="flex items-center">
+            <ModeToggle />
+          </li>
+
           {!user && (
             <li>
               <button
@@ -74,7 +78,7 @@ export default function Nav({ user }: Session) {
                   />
                   <ul
                     tabIndex={0}
-                    className="dropdown-content p-4 menu space-y-2 shadow bg-base-100 rounded-box w-72"
+                    className="dropdown-content p-4 menu space-y-2 shadow bg-base-200 text-base-content rounded-box w-72"
                   >
                     <li>
                       <Link
@@ -109,9 +113,7 @@ export default function Nav({ user }: Session) {
           )}
         </ul>
 
-        <Hydrate className="hidden">
-          <AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
-        </Hydrate>
+        <AnimatePresence>{cartStore.isOpen && <Cart />}</AnimatePresence>
       </nav>
     </>
   );

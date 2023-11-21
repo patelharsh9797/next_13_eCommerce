@@ -2,10 +2,11 @@
 import "./globals.css";
 
 // TODO components
+import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import { getServerSession } from "next-auth";
+import Hydrate from "./components/Hydrate";
 import Nav from "./components/Nav";
 import { GeistSans } from "geist/font/sans";
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
 
 export const metadata = {
   title: "NextJS 13 eCommerce web site",
@@ -22,11 +23,11 @@ export default async function RootLayout({
   const session = await getServerSession(authOptions);
 
   return (
-    <html lang="en" data-theme="light">
-      <body className={`mx-4 lg:mx-24 ${GeistSans.className}`}>
+    <html lang="en" className={`${GeistSans.className}`}>
+      <Hydrate>
         <Nav user={session?.user} expires={session?.expires as string} />
         {children}
-      </body>
+      </Hydrate>
     </html>
   );
 }

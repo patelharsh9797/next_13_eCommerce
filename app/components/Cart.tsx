@@ -33,7 +33,7 @@ export default function Cart() {
       <motion.div
         layout
         onClick={(e) => e.stopPropagation()}
-        className="bg-white absolute right-0 top-0 w-full lg:w-2/5 h-screen p-12 overflow-y-auto"
+        className="bg-base-200 absolute right-0 top-0 w-full lg:w-2/5 h-screen p-12 overflow-y-auto"
       >
         {onCheckout === "cart" && (
           <button

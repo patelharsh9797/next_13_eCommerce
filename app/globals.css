@@ -19,7 +19,8 @@
 
 html,
 body {
-  max-width: 100vw;
+  width: 100%;
+  height: 100%;
   overflow-x: hidden;
 }
 
@@ -27,12 +28,4 @@ body {
 a {
   color: inherit;
   text-decoration: none;
-}
-
-[data-theme='light'] #nprogress .bar {
-  background: #4A00FF;
-}
-
-[data-theme='dark'] #nprogress .bar {
-  background: #7480FF;
 }

@@ -2,8 +2,10 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { AddCartType } from "@/types/AddCartType";
 
+/**
+ * TODO: Cart Store state
+ */
 type OnCheckOutEnum = "cart" | "checkout" | "success";
-
 type CartState = {
   isOpen: boolean;
   paymentIntent: string;
@@ -75,6 +77,27 @@ export const userCartStore = create<CartState>()(
     }),
     {
       name: "cart-store",
+    }
+  )
+);
+
+/**
+ * TODO: Theme Store state
+ */
+type modeEnum = "light" | "dark";
+type ThemeState = {
+  mode: modeEnum;
+  toggleMode: (theme: modeEnum) => void;
+};
+
+export const userThemeStore = create<ThemeState>()(
+  persist(
+    (set) => ({
+      mode: "light",
+      toggleMode: (theme) => set((state) => ({ mode: theme })),
+    }),
+    {
+      name: "theme-store",
     }
   )
 );

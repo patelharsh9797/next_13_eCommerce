@@ -40,7 +40,7 @@ export default async function DashboardPage() {
   return (
     <div className="font-medium grid grid-cols-fluid gap-16">
       {orders.map((order) => (
-        <div className="rounded-lg p-8 space-y-2 bg-slate-400" key={order.id}>
+        <div className="rounded-lg p-8 space-y-2 bg-slate-200" key={order.id}>
           <h2 className="text-xs font-medium">Order reference : {order.id}</h2>
 
           <p className="text-xs">
@@ -51,8 +51,8 @@ export default async function DashboardPage() {
             Status :{" "}
             <span
               className={`${
-                order.status === "complete" ? "bg-teal-500" : "bg-orange-500"
-              } text-white py-1 rounded-md px-2 mx-2 text-sm`}
+                order.status === "complete" ? "bg-teal-600" : "bg-orange-600"
+              } text-white py-1 px-2 rounded-md mx-2`}
             >
               {order.status}
             </span>

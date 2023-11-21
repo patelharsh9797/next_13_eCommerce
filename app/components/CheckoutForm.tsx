@@ -45,7 +45,7 @@ export default function CheckoutForm({
   };
 
   return (
-    <form className="text-gray-600" onSubmit={handleSubmit} id="payment-form">
+    <form onSubmit={handleSubmit} id="payment-form">
       <PaymentElement id="payment-element" />
       <h1 className="mt-4 py-4 font-bold text-sm">
         Total : {formatPrice(calculateOrderAmount(cart))}
@@ -53,7 +53,7 @@ export default function CheckoutForm({
       <button
         id="submit"
         disabled={isLoading || !stripe || !elements}
-        className="py-2 bg-teal-700 w-full rounded-md text-white disabled:opacity-50"
+        className="py-2 bg-primary w-full rounded-md text-white disabled:opacity-50"
       >
         <span id="button-text">
           {isLoading ? <span>Processing 👀</span> : <span>Pay Now 🔥</span>}

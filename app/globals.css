@@ -28,3 +28,11 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+[data-theme='light'] #nprogress .bar {
+  background: #4A00FF;
+}
+
+[data-theme='dark'] #nprogress .bar {
+  background: #7480FF;
+}

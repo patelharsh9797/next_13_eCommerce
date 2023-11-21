@@ -3,6 +3,7 @@
 import { userCartStore } from "@/store";
 import { SearchParamType } from "@/types/SearchParamsType";
 import { AddCartType } from "@/types/AddCartType";
+import { useState } from "react";
 
 export default function AddCart({
   id,
@@ -12,13 +13,23 @@ export default function AddCart({
   quantity,
 }: AddCartType) {
   const { addProduct } = userCartStore();
+  const [added, setAdded] = useState(false);
+
+  const handleAddToCart = () => {
+    addProduct({ id, name, image, unit_amount, quantity });
+    setAdded(true);
+    setTimeout(() => {
+      setAdded(false);
+    }, 1000);
+  };
 
   return (
     <button
-      onClick={() => addProduct({ id, name, image, unit_amount, quantity })}
-      className="my-12 text-white py-2 px-6 rounded-md bg-teal-700 font-medium font"
+      onClick={handleAddToCart}
+      disabled={added}
+      className="my-12 btn btn-primary w-full"
     >
-      Add To Cart
+      {!added ? "Add To Cart" : "Adding To Cart 😀"}
     </button>
   );
 }

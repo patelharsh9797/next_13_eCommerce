@@ -41,24 +41,26 @@ export default async function DashboardPage() {
     <div className="font-medium space-y-8 pb-8">
       {orders.map((order) => (
         <div
-          className="rounded-lg p-8 bg-slate-200 grid md:grid-cols-2 gap-8"
+          className="rounded-lg p-8 bg-base-200 grid md:grid-cols-2 gap-8"
           key={order.id}
         >
           <div className="space-y-2">
-            <h2 className="text-xs font-medium">
+            <h2 className="text-sm font-medium">
               Order reference : {order.id}
             </h2>
 
-            <p className="text-xs">
+            <p className="text-sm">
               Time : {new Date(order.createdDate).toLocaleString()}
             </p>
 
-            <p className="text-xs">
-              Status :{" "}
+            <p className="text-sm">
+              <span>Status : </span>
               <span
                 className={`${
-                  order.status === "complete" ? "bg-teal-600" : "bg-orange-600"
-                } text-white py-1 px-2 rounded-md mx-2`}
+                  order.status === "complete"
+                    ? "badge-primary"
+                    : "badge-warning"
+                } badge text-xs`}
               >
                 {order.status}
               </span>
@@ -69,10 +71,10 @@ export default async function DashboardPage() {
             </p>
           </div>
 
-          <div className="text-sm lg:flex flex-wrap items-start gap-4">
+          <div className="text-sm lg:flex flex-wrap items-start gap-8">
             {order.products.map((product) => (
-              <div className="py-2" key={product.id}>
-                <h3 className="py-2">{product.name}</h3>
+              <div className="space-y-2" key={product.id}>
+                <h3>{product.name}</h3>
                 <div className="flex items-center gap-4">
                   <Image
                     src={product.image!}

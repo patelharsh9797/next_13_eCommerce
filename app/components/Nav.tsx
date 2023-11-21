@@ -19,13 +19,14 @@ export default function Nav({ user }: Session) {
     <>
       <ProgressBar
         height="4px"
-        color="#0d9488"
+        color="#4A00FF"
         options={{ showSpinner: false }}
         shallowRouting
       />
+
       <nav className="flex justify-between items-center py-12">
         <Link href={"/"}>
-          <h1 className="font-bold text-xl">Styled</h1>
+          <h1 className="font-bold text-xl italic">Styled</h1>
         </Link>
         <ul className="flex items-center gap-8">
           <li
@@ -40,7 +41,7 @@ export default function Nav({ user }: Session) {
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     exit={{ scale: 0 }}
-                    className="bg-teal-700 text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex justify-center items-center"
+                    className="bg-primary text-white text-sm font-bold w-5 h-5 rounded-full absolute left-4 bottom-4 flex justify-center items-center"
                   >
                     {cartStore.cart.length}
                   </motion.span>
@@ -52,7 +53,7 @@ export default function Nav({ user }: Session) {
             <li>
               <button
                 onClick={() => signIn()}
-                className="bg-teal-600 text-white py-2 px-4 rounded-md"
+                className="bg-primary text-white py-2 px-4 rounded-md"
               >
                 Sign In
               </button>
@@ -64,15 +65,15 @@ export default function Nav({ user }: Session) {
               <li>
                 <Link href="/dashboard">
                   <Image
-                    className="rounded-full"
                     src={user?.image as string}
                     alt={user?.name as string}
                     width={36}
                     height={36}
+                    className="rounded-full ring-2 ring-offset-2 ring-primary"
                   />
                 </Link>
               </li>
-              <li className="bg-teal-600 text-white py-2 px-4 rounded-md">
+              <li className="bg-primary text-white py-2 px-4 rounded-md">
                 <button onClick={() => signOut({ callbackUrl: "/" })}>
                   Sign Out
                 </button>

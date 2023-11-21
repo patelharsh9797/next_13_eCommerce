@@ -33,7 +33,7 @@ export default function Cart() {
       <motion.div
         layout
         onClick={(e) => e.stopPropagation()}
-        className="bg-white absolute right-0 top-0 w-full lg:w-2/5 h-screen p-12 overflow-y-auto text-gray-700"
+        className="bg-white absolute right-0 top-0 w-full lg:w-2/5 h-screen p-12 overflow-y-auto"
       >
         {onCheckout === "cart" && (
           <button
@@ -70,13 +70,13 @@ export default function Cart() {
 
               <div>
                 <h2>{item.name}</h2>
-                <div className="flex gap-2">
+                <div className="flex items-center gap-2">
                   <h2>Quantity: {item.quantity}</h2>
                   <button onClick={() => removeProduct(item)}>
-                    <IoRemoveCircle />
+                    <IoRemoveCircle className="text-primary w-4 h-4" />
                   </button>
                   <button onClick={() => addProduct(item)}>
-                    <IoAddCircle />
+                    <IoAddCircle className="text-primary w-4 h-4" />
                   </button>
                 </div>
                 <p className="text-sm">
@@ -94,7 +94,7 @@ export default function Cart() {
             <p>Total: {formatPrice(totalPrice)}</p>
             <button
               onClick={() => setOnCheckout("checkout")}
-              className="py-2 mt-4 bg-teal-700 w-full rounded-md text-white"
+              className="py-2 mt-4 bg-primary w-full rounded-md text-white"
             >
               Checkout
             </button>

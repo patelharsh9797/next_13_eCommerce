@@ -4,6 +4,7 @@ import danceGiphy from "@/public/dance.gif";
 import Link from "next/link";
 import { userCartStore } from "@/store";
 import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function OrderConfirmed() {
   const { setPaymentIntent, clearCart, setOnCheckout, toggleCart } =
@@ -12,6 +13,7 @@ export default function OrderConfirmed() {
     setPaymentIntent("");
     clearCart();
   }, []);
+  const router = useRouter();
 
   return (
     <motion.div
@@ -25,19 +27,18 @@ export default function OrderConfirmed() {
         <Image src={danceGiphy} alt="dancing boy in rave" className="py-8W" />
       </div>
       <div className="flex justify-center items-center gap-8">
-        <Link href={"/dashboard"}>
-          <button
-            onClick={() => {
-              setTimeout(() => {
-                setOnCheckout("cart");
-              }, 1000);
-              toggleCart();
-            }}
-            className="py-2 px-4 mt-4 font-medium bg-teal-700 rounded-md text-white"
-          >
-            Check Your Order
-          </button>
-        </Link>
+        <button
+          onClick={() => {
+            setTimeout(() => {
+              setOnCheckout("cart");
+            }, 1000);
+            toggleCart();
+            router.push("/dashboard");
+          }}
+          className="py-2 px-4 mt-4 font-medium bg-teal-700 rounded-md text-white"
+        >
+          Check Your Order
+        </button>
       </div>
     </motion.div>
   );

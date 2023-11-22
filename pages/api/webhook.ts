@@ -53,6 +53,7 @@ export default async function Handler(
           },
         });
       }
+      console.log("charge is succeeded.");
       break;
 
     default:

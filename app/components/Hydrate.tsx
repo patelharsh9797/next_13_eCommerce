@@ -20,7 +20,13 @@ export default function Hydrate({
   return (
     <>
       {isHydrated ? (
-        <body className="px-4 lg:px-24" data-theme={themeStore.mode}>
+        <body
+          // className={`px-4 lg:px-24 ${
+          //   themeStore.mode === "dark" ? "bg-base-300" : ""
+          // }`}
+          className="px-4 lg:px-24"
+          data-theme={themeStore.mode}
+        >
           {children}
         </body>
       ) : (

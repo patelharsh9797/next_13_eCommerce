@@ -1,11 +1,18 @@
 "use client";
 
 import { userThemeStore } from "@/store";
+import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 
 export default function ModeToggle() {
   const themeStore = userThemeStore();
   return (
     <>
+      <ProgressBar
+        height="4px"
+        color={themeStore.mode === "light" ? "#4A00FF" : "#7480ff"}
+        options={{ showSpinner: false }}
+        shallowRouting
+      />
       <label className="swap swap-rotate">
         {/* this hidden checkbox controls the state */}
         <input

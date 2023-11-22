@@ -57,7 +57,7 @@ export default function Cart() {
           cart.map((item) => (
             <motion.div
               layout
-              className="flex p-4 gap-4"
+              className="flex p-4 my-4 rounded-lg gap-4 bg-base-100"
               key={`cartItem-${item.id}`}
             >
               <Image
@@ -65,7 +65,7 @@ export default function Cart() {
                 alt={item.name}
                 width={120}
                 height={120}
-                className={"rounded-md w-auto h-24"}
+                className={"rounded-md w-auto h-24 shadow"}
               />
 
               <div>

@@ -14,7 +14,7 @@ export default async function Product({
         alt={searchParams.name}
         height={600}
         width={600}
-        className="rounded-md w-full"
+        className="rounded-lg w-full shadow-md"
         priority
       />
       <div className="font-medium ">

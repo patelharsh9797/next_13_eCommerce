@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { userCartStore } from "@/store";
+import { userCartStore, userThemeStore } from "@/store";
 import { loadStripe, StripeElementsOptions } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
 import { useRouter } from "next/navigation";
@@ -16,9 +16,20 @@ const stripePromise = loadStripe(
 export default function Checkout() {
   const cartStore = userCartStore();
   const [clientSecret, setClientSecret] = useState("");
+  const [stripeTheme, setStripeTheme] = useState<
+    "stripe" | "flat" | "night" | "none"
+  >("stripe");
   const router = useRouter();
+  const themeMode = userThemeStore();
 
   useEffect(() => {
+    // checking for themeMode for stripe
+    if (themeMode.mode === "light") {
+      setStripeTheme("stripe");
+    } else {
+      setStripeTheme("night");
+    }
+
     // Create a paymentIntent is as soon as page loads
     fetch("/api/create-payment-intent", {
       method: "POST",
@@ -45,7 +56,7 @@ export default function Checkout() {
   const options: StripeElementsOptions = {
     clientSecret,
     appearance: {
-      theme: "stripe",
+      theme: stripeTheme,
       labels: "floating",
     },
   };

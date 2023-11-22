@@ -5,11 +5,10 @@ import Image from "next/image";
 import { Session } from "next-auth";
 import { signIn, signOut } from "next-auth/react";
 import Cart from "./Cart";
-import { userCartStore } from "@/store";
+import { userCartStore, userThemeStore } from "@/store";
 import Link from "next/link";
 import { AiFillShopping } from "react-icons/ai";
 import { AnimatePresence, motion } from "framer-motion";
-import { AppProgressBar as ProgressBar } from "next-nprogress-bar";
 import ModeToggle from "./ModeToggle";
 
 export default function Nav({ user }: Session) {
@@ -17,13 +16,6 @@ export default function Nav({ user }: Session) {
 
   return (
     <>
-      <ProgressBar
-        height="4px"
-        color="#4A00FF"
-        options={{ showSpinner: false }}
-        shallowRouting
-      />
-
       <nav className="flex justify-between items-center py-12 w-full">
         <Link href={"/"}>
           <h1 className="font-bold text-xl italic">Styled</h1>

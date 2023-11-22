@@ -35,7 +35,7 @@ export default function OrderConfirmed() {
             toggleCart();
             router.push("/dashboard");
           }}
-          className="py-2 px-4 mt-4 font-medium bg-teal-700 rounded-md text-white"
+          className="py-2 px-4 mt-4 font-medium bg-primary rounded-md text-white"
         >
           Check Your Order
         </button>

@@ -17,9 +17,13 @@ const fetchOrders = async () => {
   const orders = await prisma.order.findMany({
     where: {
       userId: sesh?.user?.id,
+      status: "complete",
     },
     include: {
       products: true,
+    },
+    orderBy: {
+      createdDate: "desc",
     },
   });
 

@@ -18,7 +18,7 @@ export default function Nav({ user }: Session) {
     <>
       <nav className="flex justify-between items-center py-12 w-full">
         <Link href={"/"}>
-          <h1 className="font-bold text-xl italic">Styled</h1>
+          <h1 className="font-bold text-2xl font-lobster">Styled</h1>
         </Link>
 
         <ul className="flex items-center gap-8">

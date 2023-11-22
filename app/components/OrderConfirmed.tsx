@@ -27,18 +27,19 @@ export default function OrderConfirmed() {
         <Image src={danceGiphy} alt="dancing boy in rave" className="py-8W" />
       </div>
       <div className="flex justify-center items-center gap-8">
-        <button
-          onClick={() => {
-            setTimeout(() => {
-              setOnCheckout("cart");
-            }, 1000);
-            toggleCart();
-            router.push("/dashboard");
-          }}
-          className="py-2 px-4 mt-4 font-medium bg-primary rounded-md text-white"
-        >
-          Check Your Order
-        </button>
+        <Link href="/dashboard">
+          <button
+            onClick={() => {
+              setTimeout(() => {
+                setOnCheckout("cart");
+              }, 1000);
+              toggleCart();
+            }}
+            className="py-2 px-4 mt-4 font-medium bg-primary rounded-md text-white"
+          >
+            Check Your Order
+          </button>
+        </Link>
       </div>
     </motion.div>
   );

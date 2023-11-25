@@ -8,6 +8,7 @@ import Hydrate from "./components/Hydrate";
 import Nav from "./components/Nav";
 import { GeistSans } from "geist/font/sans";
 import { Lobster_Two } from "next/font/google";
+import { Metadata } from "next";
 
 const lobster = Lobster_Two({
   weight: "700",
@@ -15,10 +16,13 @@ const lobster = Lobster_Two({
   variable: "--font-lobster",
 });
 
-export const metadata = {
-  title: "NextJS 13 eCommerce web site",
+export const metadata: Metadata = {
+  title: {
+    template: "%s | Styled NextJS 13 eCommerce",
+    default: "Styled NextJS 13 eCommerce",
+  },
   description:
-    "Creating my first eCommerce next app using stripe, framer-motion.",
+    "Creating my first eCommerce next 13 app using prisma, stripe, framer-motion.",
 };
 
 export default async function RootLayout({

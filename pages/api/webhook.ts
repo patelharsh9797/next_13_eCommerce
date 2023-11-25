@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { prisma } from "@/utils/prisma";
 import { buffer } from "micro";
 import type { NextApiRequest, NextApiResponse } from "next";
+import { revalidatePath } from "next/cache";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
   apiVersion: "2022-11-15",

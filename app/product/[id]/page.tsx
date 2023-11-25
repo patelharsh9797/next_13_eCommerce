@@ -2,6 +2,13 @@ import Image from "next/image";
 import { SearchParamType } from "@/types/SearchParamsType";
 import PriceFormat from "@/utils/PriceFormat";
 import AddCart from "@/app/product/[id]/AddCart";
+import { Metadata } from "next";
+
+export async function generateMetadata({ searchParams }: SearchParamType) {
+  return {
+    title: `${searchParams.name}`,
+  };
+}
 
 export default async function Product({
   params: { id },

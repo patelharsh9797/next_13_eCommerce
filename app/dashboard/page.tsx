@@ -1,10 +1,10 @@
 import { authOptions } from "@/pages/api/auth/[...nextauth]";
 import formatPrice from "@/utils/PriceFormat";
 import { prisma } from "@/utils/prisma";
-import { Order } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import { redirect } from "next/navigation";
+import { Metadata } from "next";
 
 export const revalidate = 0;
 
@@ -14,6 +14,7 @@ const fetchOrders = async () => {
   if (!sesh) {
     return redirect("/api/auth/signin?callbackUrl=/dashboard");
   }
+
   const orders = await prisma.order.findMany({
     where: {
       userId: sesh?.user?.id,
@@ -28,6 +29,10 @@ const fetchOrders = async () => {
   });
 
   return orders;
+};
+
+export const metadata: Metadata = {
+  title: "Dashboard",
 };
 
 export default async function DashboardPage() {

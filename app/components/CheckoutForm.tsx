@@ -4,10 +4,11 @@ import { userCartStore } from "@/store";
 import formatPrice, { calculateOrderAmount } from "@/utils/PriceFormat";
 import {
   PaymentElement,
-  useStripe,
   useElements,
+  useStripe,
 } from "@stripe/react-stripe-js";
-import { useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function CheckoutForm({
   clientSecret,
@@ -15,6 +16,7 @@ export default function CheckoutForm({
   clientSecret: string;
 }) {
   const stripe = useStripe();
+  const router = useRouter();
   const elements = useElements();
   const [isLoading, setIsLoading] = useState(false);
   const { cart, setOnCheckout } = userCartStore();
@@ -39,6 +41,7 @@ export default function CheckoutForm({
       .then((result) => {
         if (!result.error) {
           setOnCheckout("success");
+          router.refresh();
         }
         setIsLoading(false);
       });

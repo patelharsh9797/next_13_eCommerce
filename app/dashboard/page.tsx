@@ -6,7 +6,8 @@ import Image from "next/image";
 import { redirect } from "next/navigation";
 import { Metadata } from "next";
 
-export const revalidate = 0;
+// export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 const fetchOrders = async () => {
   const sesh = await getServerSession(authOptions);

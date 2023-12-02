@@ -54,6 +54,7 @@ export default async function Handler(
           },
         });
       }
+      revalidatePath("/dashboard");
       console.log("charge is succeeded.");
       break;
 

@@ -41,7 +41,7 @@ export default function CheckoutForm({
       .then((result) => {
         if (!result.error) {
           setOnCheckout("success");
-          router.refresh();
+          // router.refresh();
         }
         setIsLoading(false);
       });
